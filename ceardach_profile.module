@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Blogger Profile feature.
+ */
+
+include_once('ceardach_profile.features.inc');
