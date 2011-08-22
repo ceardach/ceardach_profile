@@ -27,6 +27,7 @@ function ceardach_profile_views_default_views() {
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['query']['options']['distinct'] = TRUE;
+  $handler->display->display_options['query']['options']['query_comment'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '1';
@@ -54,11 +55,11 @@ function ceardach_profile_views_default_views() {
   $handler->display->display_options['fields']['field_body']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['field_body']['alter']['external'] = 0;
   $handler->display->display_options['fields']['field_body']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['field_body']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['field_body']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['field_body']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['field_body']['alter']['ellipsis'] = 1;
   $handler->display->display_options['fields']['field_body']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_body']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['field_body']['alter']['html'] = 0;
   $handler->display->display_options['fields']['field_body']['element_label_colon'] = 0;
   $handler->display->display_options['fields']['field_body']['element_default_classes'] = 1;
@@ -80,11 +81,11 @@ function ceardach_profile_views_default_views() {
   $handler->display->display_options['fields']['uid']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['uid']['alter']['external'] = 0;
   $handler->display->display_options['fields']['uid']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['uid']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['uid']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['uid']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['uid']['alter']['ellipsis'] = 1;
   $handler->display->display_options['fields']['uid']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['uid']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['uid']['alter']['html'] = 0;
   $handler->display->display_options['fields']['uid']['element_label_colon'] = 0;
   $handler->display->display_options['fields']['uid']['element_default_classes'] = 1;
@@ -125,20 +126,6 @@ function ceardach_profile_views_default_views() {
   /* Display: Block */
   $handler = $view->new_display('block', 'Block', 'block');
   $handler->display->display_options['block_description'] = 'About the Author';
-  $translatables['profile_blog'] = array(
-    t('Master'),
-    t('About the Author'),
-    t('more'),
-    t('Apply'),
-    t('Reset'),
-    t('Sort by'),
-    t('Asc'),
-    t('Desc'),
-    t('Profile'),
-    t('Read more'),
-    t('All'),
-    t('Block'),
-  );
   $export['profile_blog'] = $view;
 
   return $export;
