@@ -39,10 +39,16 @@ function ceardach_profile_views_default_views() {
     'uid' => 'uid',
   );
   $handler->display->display_options['row_options']['hide_empty'] = 1;
+  $handler->display->display_options['row_options']['default_field_elements'] = 1;
+  /* Relationship: Content: Author */
+  $handler->display->display_options['relationships']['uid']['id'] = 'uid';
+  $handler->display->display_options['relationships']['uid']['table'] = 'node';
+  $handler->display->display_options['relationships']['uid']['field'] = 'uid';
   /* Relationship: User: Profile */
   $handler->display->display_options['relationships']['profile']['id'] = 'profile';
   $handler->display->display_options['relationships']['profile']['table'] = 'users';
   $handler->display->display_options['relationships']['profile']['field'] = 'profile';
+  $handler->display->display_options['relationships']['profile']['relationship'] = 'uid';
   $handler->display->display_options['relationships']['profile']['required'] = 0;
   /* Field: Profile: About Me */
   $handler->display->display_options['fields']['field_body']['id'] = 'field_body';
@@ -55,16 +61,19 @@ function ceardach_profile_views_default_views() {
   $handler->display->display_options['fields']['field_body']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['field_body']['alter']['external'] = 0;
   $handler->display->display_options['fields']['field_body']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_body']['alter']['trim_whitespace'] = 0;
   $handler->display->display_options['fields']['field_body']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['field_body']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['field_body']['alter']['ellipsis'] = 1;
   $handler->display->display_options['fields']['field_body']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['field_body']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['field_body']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_body']['element_label_colon'] = 0;
+  $handler->display->display_options['fields']['field_body']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_body']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_body']['hide_empty'] = 1;
-  $handler->display->display_options['fields']['field_body']['empty_zero'] = 1;
+  $handler->display->display_options['fields']['field_body']['empty'] = 'empty';
+  $handler->display->display_options['fields']['field_body']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_body']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_body']['hide_alter_empty'] = 0;
   $handler->display->display_options['fields']['field_body']['type'] = 'text_summary_or_trimmed';
   $handler->display->display_options['fields']['field_body']['settings'] = array(
     'trim_length' => '600',
@@ -74,35 +83,32 @@ function ceardach_profile_views_default_views() {
   $handler->display->display_options['fields']['uid']['id'] = 'uid';
   $handler->display->display_options['fields']['uid']['table'] = 'users';
   $handler->display->display_options['fields']['uid']['field'] = 'uid';
+  $handler->display->display_options['fields']['uid']['relationship'] = 'uid';
   $handler->display->display_options['fields']['uid']['label'] = '';
   $handler->display->display_options['fields']['uid']['alter']['alter_text'] = 1;
-  $handler->display->display_options['fields']['uid']['alter']['text'] = 'Read more';
+  $handler->display->display_options['fields']['uid']['alter']['text'] = 'read more';
   $handler->display->display_options['fields']['uid']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['uid']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['uid']['alter']['external'] = 0;
   $handler->display->display_options['fields']['uid']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['uid']['alter']['trim_whitespace'] = 0;
   $handler->display->display_options['fields']['uid']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['uid']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['uid']['alter']['ellipsis'] = 1;
   $handler->display->display_options['fields']['uid']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['uid']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['uid']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['uid']['element_label_colon'] = 0;
+  $handler->display->display_options['fields']['uid']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['uid']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['uid']['hide_empty'] = 0;
   $handler->display->display_options['fields']['uid']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['uid']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['uid']['link_to_user'] = 1;
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
   $handler->display->display_options['sorts']['created']['field'] = 'created';
   $handler->display->display_options['sorts']['created']['order'] = 'DESC';
-  /* Sort criterion: Profile: Profile ID */
-  $handler->display->display_options['sorts']['pid']['id'] = 'pid';
-  $handler->display->display_options['sorts']['pid']['table'] = 'profile';
-  $handler->display->display_options['sorts']['pid']['field'] = 'pid';
-  $handler->display->display_options['sorts']['pid']['relationship'] = 'profile';
-  $handler->display->display_options['sorts']['pid']['order'] = 'DESC';
   /* Contextual filter: Content: Nid */
   $handler->display->display_options['arguments']['nid']['id'] = 'nid';
   $handler->display->display_options['arguments']['nid']['table'] = 'node';
@@ -122,6 +128,12 @@ function ceardach_profile_views_default_views() {
   $handler->display->display_options['filters']['status']['value'] = 1;
   $handler->display->display_options['filters']['status']['group'] = 0;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Profile: About Me (field_body:format) */
+  $handler->display->display_options['filters']['field_body_format']['id'] = 'field_body_format';
+  $handler->display->display_options['filters']['field_body_format']['table'] = 'field_data_field_body';
+  $handler->display->display_options['filters']['field_body_format']['field'] = 'field_body_format';
+  $handler->display->display_options['filters']['field_body_format']['relationship'] = 'profile';
+  $handler->display->display_options['filters']['field_body_format']['operator'] = 'not empty';
 
   /* Display: Block */
   $handler = $view->new_display('block', 'Block', 'block');
